@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			padding: 15px;
+			position: relative;
+			overflow: hidden;
+			background-color: #ccc;
+		}
+		.list{
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			height: 30px;
+			line-height: 30px;
+		}
+		.list li{
+			list-style: none;
+			float: left;
+			margin-left:6px;
+		}
+		.buttons button{
+			width: 50px;
+			height: 30px;
+		}
+		.buttons button+button{
+			margin-left:10px;
+		}
+		.result{
+			font-size:14px;
+		}
+		.result i{
+			font-style: normal;
+			margin-left:6px;
+		}
+		.red{color: red;}
+		.blue{color: blue;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul class="list"></ul>
+		<div class="buttons">
+			<button data-type="red" data-min="1" data-max="33">红</button><button data-type="blue" data-min="1" data-max="16">蓝</button>
+		</div>
+		<p class="result"></p>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		let $list=$('.list'),
+			$buttons=$('.buttons'),
+			$result=$('.result');
+		let red=[1,8,11,23,27],
+			blue=[],
+			counts=10;
+		$buttons.children().on('click',function(){
+			let min=+$(this).attr('data-min'),
+				max=+$(this).attr('data-max'),
+				type=$(this).attr('data-type');
+			let i=0,
+				res=[],
+				checked=type==='red'?red:blue;
+			while(i<counts){
+				let t=random(min,max)
+				if(!checked.includes(t)){
+					res.push(t);
+					++i;
+				}
+			}
+			$result.children().remove();
+			res.sort((a,b)=>a-b).forEach(item=>{
+				$('<i></i>',{class:type}).html(item).appendTo($result);
+			});
+		});
+		function random(min,max){
+			return min+Math.round((max-min)*Math.random());
+		}
+		function double(number){
+			return (number>10?'':'0')+number;
+		}
+		function render(){
+			[red,blue].forEach((ball,index)=>{
+				ball.forEach(item=>{
+					$('<li></li>',{class:index?'blue':'red'}).html(double(item)).appendTo($list);
+				});
+			});
+		}
+		render();
+	</script>
+</body>
+</html>
