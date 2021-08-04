@@ -11,6 +11,7 @@
 			margin: 0;
 			padding: 0;
 		}
+		ul,li,p{margin: 0;padding: 0;}
 		.container{
 			box-sizing: border-box;
 			width: 100%;
@@ -22,25 +23,27 @@
 		}
 		.list{
 			overflow: hidden;
-			margin: 0;
-			padding: 0;
-			height: 30px;
-			line-height: 30px;
+			height: 60px;
+			line-height: 60px;
 		}
 		.list li{
 			list-style: none;
 			float: left;
 			margin-left:6px;
+			font-size: 24px;
 		}
 		.buttons button{
-			width: 50px;
-			height: 30px;
+			width: 80px;
+			height: 40px;
+			font-size: 24px;
 		}
 		.buttons button+button{
 			margin-left:10px;
 		}
 		.result{
-			font-size:14px;
+			font-size:20px;
+			height: 60px;
+			line-height:60px;
 		}
 		.result i{
 			font-style: normal;
@@ -54,7 +57,7 @@
 	<div class="container">
 		<ul class="list"></ul>
 		<div class="buttons">
-			<button data-type="red" data-min="1" data-max="33">红</button><button data-type="blue" data-min="1" data-max="16">蓝</button>
+			<button class="red" data-type="red" data-min="1" data-max="33">红</button><button class="blue" data-type="blue" data-min="1" data-max="16">蓝</button>
 		</div>
 		<p class="result"></p>
 	</div>
