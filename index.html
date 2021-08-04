@@ -85,7 +85,7 @@
 			}
 			$result.children().remove();
 			res.sort((a,b)=>a-b).forEach(item=>{
-				$('<i></i>',{class:type}).html(item).appendTo($result);
+				$('<i></i>',{class:type}).html(double(item)).appendTo($result);
 			});
 		});
 		function random(min,max){
